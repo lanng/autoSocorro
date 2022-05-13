@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::redirect('/', '/login');
+Route::get('/contact', function (){
+    return view('site.contact', ['title' => 'Contato']);
+})->name('site.contact');
+
+Route::get('/login/{error?}', [LoginController::class, 'index'])->name('site.login');
+Route::post('/login', [LoginController::class, 'loginAuth'])->name('site.login');
+
+Route::prefix('app')->middleware('authLogin')->group(function (){
+    Route::get('/home', function () { return view('app.home', ['title' => 'Home']); })->name('app.home');
 });
