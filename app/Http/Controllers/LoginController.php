@@ -57,4 +57,9 @@ class LoginController extends Controller
             return redirect()->route('site.login', ['error' => 1]);
         }
     }
+
+    public function logout(){
+        session_destroy();
+        return redirect(route('site.login'), '302');
+    }
 }
