@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -32,20 +33,22 @@ class LoginController extends Controller
         $email = $request->get('user');
         $password = $request->get('password');
 
-        $request->validate(
-            [
-                'user' => 'email|required',
-                'password' => 'required'
+        $rules = [
+            'user' => 'email|required',
+            'password' => 'required'
 
-            ],
-            [
-                'user.email' => 'O email digitado não é válido',
-                'password.required' => 'O campo senha é obrigatório'
-            ]
-        );
+        ];
+        $feedback = [
+            'user.email' => 'O email digitado não é válido',
+            'password.required' => 'O campo senha é obrigatório'
+        ];
 
+        $request->validate($rules, $feedback);
 
-        $exist = User::where('email', $email)->where('password', $password)->get()->first();
+        //metodo de login com senha salvo em banco apenas para teste mais facilitado, após as implementações básicas das views e outros controllers
+        //o sistema vai armazenar apenas a hash da senha e o email cadastrado.
+//        $exist = User::where('email', $email)->where('password', $password)->get()->first();
+        $exist = DB::table('users')->where('password', '=', $password)->where('email', '=', $email)->get()->first();
 
         if (isset($exist)) {
             session_start();
