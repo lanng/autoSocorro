@@ -9,5 +9,5 @@ class plate extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['plate', 'city'];
+    protected $fillable = ['plate', 'city'];//MUDAR: ao inves de cidade inserir o renavam
 }

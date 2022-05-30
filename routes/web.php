@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use \App\Http\Controllers\ServiceController;
 use \App\Http\Controllers\DriverController;
-
+use \App\Http\Controllers\PlateController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +28,17 @@ Route::prefix('app')->middleware('authLogin')->group(function (){
     Route::get('/home', function () { return view('app.home', ['title' => 'Home']); })->name('app.home');
     Route::get('/logout', [LoginController::class, 'logout'])->name('app.logout');
     Route::get('/services', [ServiceController::class, 'index'])->name('app.services');
-    Route::get('/drivers', [DriverController::class, 'index'])->name('app.drivers');
+
+    Route::get('/drivers', [DriverController::class, 'listDrivers'])->name('app.drivers');
+    Route::get('/driver/register', [DriverController::class, 'register'])->name('app.driver-register');
     Route::post('/drivers', [DriverController::class, 'createDriver'])->name('app.drivers.create');
+    Route::get('/driver/edit/{id}', [DriverController::class, 'edit'])->name('app.driver.edit');
+    Route::post('/driver/edit/{id}', [DriverController::class, 'update'])->name('app.driver.update');
+    Route::get('/driver/delete/{id}', [DriverController::class, 'delete'])->name('app.driver.delete');
+
+
+    Route::get('/plates', [PlateController::class, 'listPlates'])->name('app.plates');
+    Route::get('/plates/register', [PlateController::class, 'register'])->name('app.plates-register');
+    Route::post('/plates', [PlateController::class, 'createPlate'])->name('app.plates.create');
+
 });

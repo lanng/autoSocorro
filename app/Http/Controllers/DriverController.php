@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\driver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DriverController extends Controller
 {
-    public function index(){
-        return view('app.driver-list', ['title' => 'Listagem Motoristas']);
+    public function register(){
+        return view('app.driver.create', ['title' => 'Cadastro Motoristas']);
+    }
+
+    public function listDrivers(){
+        $drivers = DB::table('drivers')->select('*')->paginate(5);
+        return view('app.driver.list', ['title' => 'Listagem Motoristas', 'drivers' => $drivers]);
+
     }
 
     public function createDriver(Request $request){
@@ -32,6 +39,29 @@ class DriverController extends Controller
         } else {
             $message = 'Erro no cadastro.';
         }
-        return view('app.driver-register', ['title' => 'Cadastro Motoristas', 'message' => $message]);
+        return redirect()->route('app.drivers')->with('status', $message);
+    }
+
+    public function edit($id)
+    {
+        $driver = driver::findOrFail($id);
+        return view('app.driver.edit', ['driver' => $driver, 'title' => 'Editar Motorista']);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $driver = driver::findOrFail($id);
+        $driver->name = $request->input('name');
+        $driver->cpf = $request->input('cpf');
+        $driver->update();
+
+        return redirect()->route('app.drivers')->with('status', 'Motorista Alterado com sucesso!');
+    }
+
+    public function delete($id)
+    {
+        $driver = DB::table('drivers')->select('*')->where('id', '=', $id);
+        $driver->delete();
+        return redirect()->route('app.drivers')->with('status', 'Motorista Excluido com Sucesso!');
     }
 }
