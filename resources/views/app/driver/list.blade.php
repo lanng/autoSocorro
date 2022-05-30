@@ -18,7 +18,7 @@
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody class="">
+            <tbody>
                 @foreach($drivers as $driver)
                     <tr>
                         <td>{{ $driver->name }}</td>
@@ -42,9 +42,5 @@
                 </li>
             </ul>
         </nav>
-{{--        <div class="btn container-fluid">--}}
-{{--            <a href="{{ $drivers->previousPageUrl() }}"><i class="fa-solid fa-angle-left"></i></a>--}}
-{{--            <a href="{{ $drivers->nextPageUrl() }}"><i class="fa-solid fa-angle-right"></i></a>--}}
-{{--        </div>--}}
     </div>
 @endsection

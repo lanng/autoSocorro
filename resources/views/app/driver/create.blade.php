@@ -25,12 +25,6 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-
-                            @if(isset($message) && $message != '')
-                                <div class="container-md">
-                                    <p class="text-success" align="center">{{ $message }}</p>
-                                </div>
-                            @endif
                             <div class="d-flex justify-content-end mt-4 mb-0">
                                 <button type="submit" class="btn btn-success">Cadastrar</button>
                             </div>

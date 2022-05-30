@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\plate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PlateController extends Controller
 {
     public function register(){
-        return view('app.plate-register', ['title' => 'Cadastro Placas']);
+        return view('app.plate.register', ['title' => 'Cadastro Placas']);
     }
 
     public function listPlates(){
         $plates = DB::table('plates')->select('*')->paginate(5);
-        return view('app.plate-list', ['title' => 'Listagem Placas', 'plates' => $plates]);
+        return view('app.plate.list', ['title' => 'Listagem Placas', 'plates' => $plates]);
     }
 
     public function createPlate(Request $request){
@@ -36,6 +37,30 @@ class PlateController extends Controller
         } else {
             $message = 'Erro no cadastro.';
         }
-        return view('app.plate-register', ['title' => 'Cadastro Placas', 'message' => $message]);
+
+        return redirect()->route('app.plates')->with('status', $message);
+    }
+
+    public function edit($id)
+    {
+        $plate = plate::findOrFail($id);
+        return view('app.plate.edit', ['plate' => $plate, 'title' => 'Editar Placa']);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $plate = plate::findOrFail($id);
+        $plate->plate = $request->input('plate');
+        $plate->city = $request->input('city');
+        $plate->update();
+
+        return redirect()->route('app.plates')->with('status', 'Placa Alterada com sucesso!');
+    }
+
+    public function delete($id)
+    {
+        $plate = DB::table('plates')->select('*')->where('id', '=', $id);
+        $plate->delete();
+        return redirect()->route('app.plates')->with('status', 'Placa Excluída com Sucesso!');
     }
 }

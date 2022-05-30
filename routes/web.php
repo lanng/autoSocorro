@@ -40,5 +40,8 @@ Route::prefix('app')->middleware('authLogin')->group(function (){
     Route::get('/plates', [PlateController::class, 'listPlates'])->name('app.plates');
     Route::get('/plates/register', [PlateController::class, 'register'])->name('app.plates-register');
     Route::post('/plates', [PlateController::class, 'createPlate'])->name('app.plates.create');
+    Route::get('/plate/edit/{id}', [PlateController::class, 'edit'])->name('app.plate.edit');
+    Route::post('/plate/edit/{id}', [PlateController::class, 'update'])->name('app.plate.update');
+    Route::get('/plate/delete/{id}', [PlateController::class, 'delete'])->name('app.plate.delete');
 
 });
