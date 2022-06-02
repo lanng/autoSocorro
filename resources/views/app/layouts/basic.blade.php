@@ -58,10 +58,20 @@
                             <a class="nav-link" href="{{ route('app.drivers') }}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-id-card"></i></div>
                                 Motoristas
+                            </a>
                             <a class="nav-link" href="{{ route('app.plates') }}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-truck-moving"></i></div>
                                 Placas
-                        <a class="nav-link" href="#">
+                            </a>
+                            <a class="nav-link" href="{{ route('app.insurances') }}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-building"></i></div>
+                                Seguradoras
+                            </a>
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
+                                Empresas
+                            </a>
+                            <a class="nav-link" href="#">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user-lock"></i></div>
                             Usuarios
                         </a>

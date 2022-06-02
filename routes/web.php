@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use \App\Http\Controllers\ServiceController;
 use \App\Http\Controllers\DriverController;
 use \App\Http\Controllers\PlateController;
+use \App\Http\Controllers\InsuranceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +30,7 @@ Route::prefix('app')->middleware('authLogin')->group(function (){
     Route::get('/logout', [LoginController::class, 'logout'])->name('app.logout');
     Route::get('/services', [ServiceController::class, 'index'])->name('app.services');
 
+    //Rotas para motoristas
     Route::get('/drivers', [DriverController::class, 'listDrivers'])->name('app.drivers');
     Route::get('/driver/register', [DriverController::class, 'register'])->name('app.driver-register');
     Route::post('/drivers', [DriverController::class, 'createDriver'])->name('app.drivers.create');
@@ -36,12 +38,20 @@ Route::prefix('app')->middleware('authLogin')->group(function (){
     Route::post('/driver/edit/{id}', [DriverController::class, 'update'])->name('app.driver.update');
     Route::get('/driver/delete/{id}', [DriverController::class, 'delete'])->name('app.driver.delete');
 
-
+    //Rotas para Placas
     Route::get('/plates', [PlateController::class, 'listPlates'])->name('app.plates');
     Route::get('/plates/register', [PlateController::class, 'register'])->name('app.plates-register');
     Route::post('/plates', [PlateController::class, 'createPlate'])->name('app.plates.create');
     Route::get('/plate/edit/{id}', [PlateController::class, 'edit'])->name('app.plate.edit');
     Route::post('/plate/edit/{id}', [PlateController::class, 'update'])->name('app.plate.update');
     Route::get('/plate/delete/{id}', [PlateController::class, 'delete'])->name('app.plate.delete');
+
+    //Rotas para seguradoras
+    Route::get('/insurance', [InsuranceController::class, 'listPlates'])->name('app.insurances');
+    Route::get('/insurances/register', [InsuranceController::class, 'register'])->name('app.insurances-register');
+    Route::post('/insurances', [InsuranceController::class, 'createPlate'])->name('app.insurances.create');
+    Route::get('/insurance/edit/{id}', [InsuranceController::class, 'edit'])->name('app.insurance.edit');
+    Route::post('/insurance/edit/{id}', [InsuranceController::class, 'update'])->name('app.insurance.update');
+    Route::get('/insurance/delete/{id}', [InsuranceController::class, 'delete'])->name('app.insurance.delete');
 
 });

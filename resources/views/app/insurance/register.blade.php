@@ -2,25 +2,25 @@
 @section('title', $title)
 @section('content')
     <div class="container-md justify-content-md-center">
-        <h1 align="center">Cadastro de Placas</h1>
+        <h1 align="center">Cadastro de Seguradoras</h1>
         <div class="row justify-content-center">
             <div class="col-lg-5">
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                     <div class="card-body">
-                        <form method="post" action="{{ route('app.plates.create') }}">
+                        <form method="post" action="{{ route('app.insurances.create') }}">
                             @csrf
                             <fieldset>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control @error('plate') is-invalid @enderror" id="plate" name="plate" value="{{ $plate->plate ?? old('plate') }}" type="text" placeholder="Placa" />
-                                    <label for="plate">Placa do Caminhão</label>
-                                    @error('plate')
+                                    <input class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $insurance->name ?? old('insurance') }}" type="text" placeholder="Nome Seguradora" />
+                                    <label for="insurance">Nome da Seguradora</label>
+                                    @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control @error('city') is-invalid @enderror" id="city" name="city" value="{{ $plate->city ?? old('city') }}" type="text" placeholder="Cidade" />
-                                    <label for="city">Cidade da Placa</label>
-                                    @error('city')
+                                    <input class="form-control @error('cnpj') is-invalid @enderror" id="cnpj" name="cnpj" value="{{ $insurance->cnpj ?? old('cnpj') }}" type="text" placeholder="CNPJ" />
+                                    <label for="cnpj">CNPJ Seguradora</label>
+                                    @error('cnpj')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
