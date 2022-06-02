@@ -33,32 +33,32 @@ Route::prefix('app')->middleware('authLogin')->group(function (){
 
     //Rotas para motoristas
     Route::get('/drivers', [DriverController::class, 'listDrivers'])->name('app.drivers');
-    Route::get('/driver/register', [DriverController::class, 'register'])->name('app.driver-register');
-    Route::post('/drivers', [DriverController::class, 'createDriver'])->name('app.drivers.create');
+    Route::get('/driver/register', [DriverController::class, 'register'])->name('app.driver.register');
+    Route::post('/drivers', [DriverController::class, 'createDriver'])->name('app.driver.create');
     Route::get('/driver/edit/{id}', [DriverController::class, 'edit'])->name('app.driver.edit');
     Route::post('/driver/edit/{id}', [DriverController::class, 'update'])->name('app.driver.update');
     Route::get('/driver/delete/{id}', [DriverController::class, 'delete'])->name('app.driver.delete');
 
     //Rotas para Placas
     Route::get('/plates', [PlateController::class, 'listPlates'])->name('app.plates');
-    Route::get('/plates/register', [PlateController::class, 'register'])->name('app.plates-register');
-    Route::post('/plates', [PlateController::class, 'createPlate'])->name('app.plates.create');
+    Route::get('/plates/register', [PlateController::class, 'register'])->name('app.plate.register');
+    Route::post('/plates', [PlateController::class, 'createPlate'])->name('app.plate.create');
     Route::get('/plate/edit/{id}', [PlateController::class, 'edit'])->name('app.plate.edit');
     Route::post('/plate/edit/{id}', [PlateController::class, 'update'])->name('app.plate.update');
     Route::get('/plate/delete/{id}', [PlateController::class, 'delete'])->name('app.plate.delete');
 
     //Rotas para seguradoras
     Route::get('/insurance', [InsuranceController::class, 'list'])->name('app.insurances');
-    Route::get('/insurances/register', [InsuranceController::class, 'register'])->name('app.insurances-register');
-    Route::post('/insurances', [InsuranceController::class, 'create'])->name('app.insurances.create');
+    Route::get('/insurance/register', [InsuranceController::class, 'register'])->name('app.insurance.register');
+    Route::post('/insurance', [InsuranceController::class, 'create'])->name('app.insurances.create');
     Route::get('/insurance/edit/{id}', [InsuranceController::class, 'edit'])->name('app.insurance.edit');
     Route::post('/insurance/edit/{id}', [InsuranceController::class, 'update'])->name('app.insurance.update');
     Route::get('/insurance/delete/{id}', [InsuranceController::class, 'delete'])->name('app.insurance.delete');
 
     //Rotas para empresas
     Route::get('/company', [CompanyController::class, 'list'])->name('app.companies');
-    Route::get('/companies/register', [CompanyController::class, 'register'])->name('app.companies-register');
-    Route::post('/companies', [CompanyController::class, 'create'])->name('app.companies.create');
+    Route::get('/company/register', [CompanyController::class, 'register'])->name('app.company.register');
+    Route::post('/company', [CompanyController::class, 'create'])->name('app.company.create');
     Route::get('/company/edit/{id}', [CompanyController::class, 'edit'])->name('app.company.edit');
     Route::post('/company/edit/{id}', [CompanyController::class, 'update'])->name('app.company.update');
     Route::get('/company/delete/{id}', [CompanyController::class, 'delete'])->name('app.company.delete');

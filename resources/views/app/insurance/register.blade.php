@@ -11,14 +11,14 @@
                             @csrf
                             <fieldset>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $insurance->name ?? old('insurance') }}" type="text" placeholder="Nome Seguradora" />
+                                    <input class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" type="text" placeholder="Nome Seguradora" />
                                     <label for="insurance">Nome da Seguradora</label>
                                     @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control @error('cnpj') is-invalid @enderror" id="cnpj" name="cnpj" value="{{ $insurance->cnpj ?? old('cnpj') }}" type="text" placeholder="CNPJ" />
+                                    <input class="form-control @error('cnpj') is-invalid @enderror" id="cnpj" name="cnpj" value="{{ old('cnpj') }}" type="text" placeholder="CNPJ" />
                                     <label for="cnpj">CNPJ Seguradora</label>
                                     @error('cnpj')
                                     <div class="invalid-feedback">{{ $message }}</div>

@@ -11,15 +11,15 @@
                             @csrf
                             <fieldset>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control @error('name') is-invalid @enderror" id="plate" name="plate" value="{{ $plate->plate }}" type="text" placeholder="Nome" />
-                                    <label for="name">Placa</label>
+                                    <input class="form-control @error('plate') is-invalid @enderror" id="plate" name="plate" value="{{ $plate->plate }}" type="text" placeholder="Nome" />
+                                    <label for="plate">Placa</label>
                                     @error('plate')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control @error('cpf') is-invalid @enderror" id="city" name="city" value="{{ $plate->city }}" type="text" placeholder="CPF" />
-                                    <label for="cpf">Cidade da Placa</label>
+                                    <input class="form-control @error('city') is-invalid @enderror" id="city" name="city" value="{{ $plate->city }}" type="text" placeholder="CPF" />
+                                    <label for="city">Cidade da Placa</label>
                                     @error('city')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

@@ -7,7 +7,7 @@
             <div class="col-lg-5">
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                     <div class="card-body">
-                        <form method="post" action="{{ route('app.plates.create') }}">
+                        <form method="post" action="{{ route('app.plate.create') }}">
                             @csrf
                             <fieldset>
                                 <div class="form-floating mb-3">

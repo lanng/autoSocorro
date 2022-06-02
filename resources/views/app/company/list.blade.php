@@ -8,7 +8,7 @@
                 {{ session('status') }}
             </div>
         @endif
-        <button type="button" class="btn btn-outline-info"><a class="link-dark" href="{{ route('app.companies-register') }}"><i class="fa-solid fa-plus"></i></a></button>
+        <button type="button" class="btn btn-outline-info"><a class="link-dark" href="{{ route('app.company.register') }}"><i class="fa-solid fa-plus"></i></a></button>
         <table class="table table-responsive-md">
             <thead>
             <tr>

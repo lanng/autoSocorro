@@ -17,21 +17,31 @@ class PlateController extends Controller
         return view('app.plate.list', ['title' => 'Listagem Placas', 'plates' => $plates]);
     }
 
+    public function formValidate(Request $request, plate $plate=null){
+        $rules = [
+            'plate' => 'required|min:8|max:8|unique:plates,plate',
+            'city' => 'max:30'
+        ];
+
+        if (!empty($plate)){
+            $rules['plate'] = 'required|min:8|max:8|unique:plates,plate,'.$plate->id;
+        }
+
+        $feedback = [
+            'plate.required' => 'O campo placa é obrigatório!',
+            'plate.min' => 'O campo placa deve ser preenchido corretamente (XXX-0000)',
+            'plate.max' => 'O campo placa deve ser preenchido corretamente (XXX-0000)',
+            'plate.unique' => 'Esta placa já está cadastrada no sistema!',
+            'city.max' => 'O campo cidade deve conter no máximo 30 caracteres ',
+
+        ];
+        $request->validate($rules, $feedback);
+    }
+
     public function createPlate(Request $request){
         $message = '';
         if ($request->input('_token') != ''){
-            $rules = [
-                'plate' => 'required|min:8|max:8',
-                'city' => 'max:30'
-            ];
-            $feedback = [
-                'required.plate' => 'O campo placa é obrigatório!',
-                'plate.min' => 'O campo placa deve ser preenchido corretamente (XXX-0000)',
-                'plate.max' => 'O campo placa deve ser preenchido corretamente (XXX-0000)',
-                'city.max' => 'O campo cidade deve conter no máximo 30 caracteres ',
-
-            ];
-            $request->validate($rules, $feedback);
+            $this->formValidate($request);
             DB::table('plates')->insert(['plate' => $request->get('plate'), 'city' => $request->get('city')]);
             $message = 'Placa adicionada com sucesso!';
         } else {
@@ -50,6 +60,7 @@ class PlateController extends Controller
     public function update(Request $request, $id)
     {
         $plate = plate::findOrFail($id);
+        $this->formValidate($request, $plate);
         $plate->plate = $request->input('plate');
         $plate->city = $request->input('city');
         $plate->update();

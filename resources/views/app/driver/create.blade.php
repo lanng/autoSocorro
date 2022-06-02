@@ -8,7 +8,7 @@
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                     <div class="card-body">
 {{--                        asd--}}
-                        <form method="post" action="{{ route('app.drivers.create')  }}">
+                        <form method="post" action="{{ route('app.driver.create')  }}">
                         @csrf
                         <fieldset>
                             <div class="form-floating mb-3">

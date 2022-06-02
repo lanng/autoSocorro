@@ -17,12 +17,17 @@ class CompanyController extends Controller
         return view('app.company.list', ['title' => 'Listagem Empresas', 'companies' => $companies]);
     }
 
-    public function formValidate(Request $request){
+    public function formValidate(Request $request, company $company=null){
         $rules = [
             'name' => 'required|min:3|max:20',
             'cnpj' => 'required|min:14|max:14|unique:companies,cnpj',
             'city' => 'max:30'
         ];
+        //Modificando regra para na hora de atualizar o registro ele ignorar o proprio cnpj do registro que sera modificado.
+        if (!empty($company)){
+            $rules['cnpj'] = 'required|min:14|max:14|unique:companies,cnpj,'.$company->id;
+        }
+
         $feedback = [
             'name.required' => 'O campo nome é obrigatório!',
             'name.min' => 'O campo nome deve ter pelo menos 3 caracteres',
@@ -58,7 +63,7 @@ class CompanyController extends Controller
     public function update(Request $request, $id)
     {
         $company = company::findOrFail($id);
-        $this->formValidate($request);
+        $this->formValidate($request, $company);
         $company->name = $request->input('name');
         $company->cnpj = $request->input('cnpj');
         $company->city = $request->input('city');
