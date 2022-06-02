@@ -12,12 +12,12 @@ class InsuranceController extends Controller
         return view('app.insurance.register', ['title' => 'Cadastro Seguradoras']);
     }
 
-    public function listPlates(){
+    public function list(){
         $insurances = DB::table('insurances')->select('*')->paginate(5);
         return view('app.insurance.list', ['title' => 'Listagem Seguradoras', 'insurances' => $insurances]);
     }
 
-    public function createPlate(Request $request){
+    public function create(Request $request){
         $message = '';
         if ($request->input('_token') != ''){
             $rules = [

@@ -67,7 +67,7 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-building"></i></div>
                                 Seguradoras
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('app.companies') }}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                                 Empresas
                             </a>

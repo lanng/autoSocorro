@@ -6,6 +6,7 @@ use \App\Http\Controllers\ServiceController;
 use \App\Http\Controllers\DriverController;
 use \App\Http\Controllers\PlateController;
 use \App\Http\Controllers\InsuranceController;
+use \App\Http\Controllers\CompanyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,11 +48,19 @@ Route::prefix('app')->middleware('authLogin')->group(function (){
     Route::get('/plate/delete/{id}', [PlateController::class, 'delete'])->name('app.plate.delete');
 
     //Rotas para seguradoras
-    Route::get('/insurance', [InsuranceController::class, 'listPlates'])->name('app.insurances');
+    Route::get('/insurance', [InsuranceController::class, 'list'])->name('app.insurances');
     Route::get('/insurances/register', [InsuranceController::class, 'register'])->name('app.insurances-register');
-    Route::post('/insurances', [InsuranceController::class, 'createPlate'])->name('app.insurances.create');
+    Route::post('/insurances', [InsuranceController::class, 'create'])->name('app.insurances.create');
     Route::get('/insurance/edit/{id}', [InsuranceController::class, 'edit'])->name('app.insurance.edit');
     Route::post('/insurance/edit/{id}', [InsuranceController::class, 'update'])->name('app.insurance.update');
     Route::get('/insurance/delete/{id}', [InsuranceController::class, 'delete'])->name('app.insurance.delete');
+
+    //Rotas para empresas
+    Route::get('/company', [CompanyController::class, 'list'])->name('app.companies');
+    Route::get('/companies/register', [CompanyController::class, 'register'])->name('app.companies-register');
+    Route::post('/companies', [CompanyController::class, 'create'])->name('app.companies.create');
+    Route::get('/company/edit/{id}', [CompanyController::class, 'edit'])->name('app.company.edit');
+    Route::post('/company/edit/{id}', [CompanyController::class, 'update'])->name('app.company.update');
+    Route::get('/company/delete/{id}', [CompanyController::class, 'delete'])->name('app.company.delete');
 
 });
